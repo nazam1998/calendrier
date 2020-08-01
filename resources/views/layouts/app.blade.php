@@ -47,8 +47,13 @@
                         </li>
                         @endif
                         @else
+                        @if (Auth::user()->role_id==1)
                         <li class="nav-item">
-                            <a href="{{route('event.create')}}" class="nav-link">Ajouter évènement</a>
+                            <a href="{{route('event.index')}}" class="nav-link">Evènement</a>
+                        </li>
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{route('event.create')}}" class="nav-link">Suggérer un évènement</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

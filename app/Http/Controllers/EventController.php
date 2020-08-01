@@ -39,6 +39,7 @@ class EventController extends Controller
                 'title' => $request->titre,
                 'start' => $debut,
                 'end' => $fin,
+                'valide'=>false
             ]
         );
         return redirect('/');
@@ -80,6 +81,19 @@ class EventController extends Controller
     {
         $event = Event::where('id', $request->id)->delete();
         return Response::json($event);
+    }
+
+    public function valider(Event $event)
+    {
+        $event->valide = true;
+        $event->save();
+        return redirect()->back();
+    }
+    public function invalider(Event $event)
+    {
+        $event->valide = false;
+        $event->save();
+        return redirect()->back();
     }
     public function destroyAdmin(Event $event)
     {

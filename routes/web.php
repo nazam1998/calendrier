@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "WelcomeController@index");
 
 Auth::routes();
+Route::get('event/{event}/valider','EventController@valider')->name('event.valider');
+Route::get('event/{event}/invalider','EventController@invalider')->name('event.invalider');
 Route::post('event/{event}/update', 'EventController@updateAdmin')->name('event.updateAdmin');
 Route::delete('event/{event}/delete', 'EventController@destroyAdmin')->name('event.destroyAdmin');
 Route::resource('event', 'EventController');

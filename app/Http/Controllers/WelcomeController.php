@@ -15,7 +15,8 @@ class WelcomeController extends Controller
         if (request()->ajax()) {
             $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
             $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
-            $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end']);
+            $data = Event::where('valide',1)->whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end']);
+            dd($data);
             return Response::json($data);
         }
         return view('welcome');
