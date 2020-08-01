@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',"WelcomeController@index");
+Route::get('/', "WelcomeController@index");
 
 Auth::routes();
+Route::post('event/{event}/update', 'EventController@updateAdmin')->name('event.updateAdmin');
 Route::resource('event', 'EventController');
 Route::get('/home', 'HomeController@index')->name('home');

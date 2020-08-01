@@ -11,13 +11,8 @@ class EventController extends Controller
 {
     public function index()
     {
-        if (request()->ajax()) {
-            $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
-            $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
-            $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end']);
-            return Response::json($data);
-        }
-        return view('welcome');
+        $events = Event::all();
+        return view('admin.event.index', compact('events'));
     }
     public function create()
     {
@@ -47,6 +42,9 @@ class EventController extends Controller
             ]
         );
         return redirect('/');
+    }
+    public function edit(Event $event){
+        return view('admin.event.edit',compact('event'));
     }
     public function update(Request $request)
     {

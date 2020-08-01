@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
     var calendar = $('#calendar').fullCalendar({
         editable: true,
-        events: SITEURL + "/event",
+        events: SITEURL + "/",
         displayEventTime: true,
         editable: true,
         timeFormat: 'H(:mm)',
