@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use LaravelFullCalendar\Facades\Calendar;
+use Response,Redirect;
 
 class WelcomeController extends Controller
 {

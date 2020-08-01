@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Facade\FlareClient\Http\Response;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Redirect, Response;
 
 class EventController extends Controller
 {
@@ -16,13 +17,36 @@ class EventController extends Controller
             $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end']);
             return Response::json($data);
         }
-        return view('fullcalender');
+        return view('welcome');
     }
-    public function create(Request $request)
+    public function create()
     {
-        $insertArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end];
-        $event = Event::insert($insertArr);
-        return Response::json($event);
+        return view('admin/event/add');
+    }
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'titre' => "required|string|min:3",
+            'debut' => "required|date|after:yesterday",
+            'debut_heure' => "required",
+            'fin' => "required|date|after:debut-1",
+            'fin_heure' => "required",
+            'description' => "nullable|string|min:2",
+        ]);
+
+
+        $debut = Carbon::parse($request->debut . " " . $request->debut_heure);
+        $fin = Carbon::parse($request->fin . " " . $request->fin_heure);
+
+        Event::insert(
+            [
+                'title' => $request->titre,
+                'start' => $debut,
+                'end' => $fin,
+            ]
+        );
+        return redirect('/');
     }
     public function update(Request $request)
     {
