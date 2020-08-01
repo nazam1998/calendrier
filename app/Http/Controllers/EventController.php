@@ -43,8 +43,31 @@ class EventController extends Controller
         );
         return redirect('/');
     }
-    public function edit(Event $event){
-        return view('admin.event.edit',compact('event'));
+    public function edit(Event $event)
+    {
+        return view('admin.event.edit', compact('event'));
+    }
+    public function updateAdmin(Request $request, Event $event)
+    {
+        $request->validate([
+            'titre' => "required|string|min:3",
+            'debut' => "required|date|after:yesterday",
+            'debut_heure' => "required",
+            'fin' => "required|date|after:debut-1",
+            'fin_heure' => "required",
+            'description' => "nullable|string|min:2",
+        ]);
+        $debut = Carbon::parse($request->debut . " " . $request->debut_heure);
+        $fin = Carbon::parse($request->fin . " " . $request->fin_heure);
+
+        Event::whereId($event->id)->update(
+            [
+                'title' => $request->titre,
+                'start' => $debut,
+                'end' => $fin,
+            ]
+        );
+        return redirect()->route('event.index');
     }
     public function update(Request $request)
     {
@@ -57,5 +80,10 @@ class EventController extends Controller
     {
         $event = Event::where('id', $request->id)->delete();
         return Response::json($event);
+    }
+    public function destroyAdmin(Event $event)
+    {
+        $event->delete();
+        return redirect()->back();
     }
 }

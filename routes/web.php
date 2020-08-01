@@ -17,5 +17,6 @@ Route::get('/', "WelcomeController@index");
 
 Auth::routes();
 Route::post('event/{event}/update', 'EventController@updateAdmin')->name('event.updateAdmin');
+Route::delete('event/{event}/delete', 'EventController@destroyAdmin')->name('event.destroyAdmin');
 Route::resource('event', 'EventController');
 Route::get('/home', 'HomeController@index')->name('home');

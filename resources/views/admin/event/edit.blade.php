@@ -40,7 +40,7 @@
                 </button>
             </div>
             @enderror
-            <input type="time" value="{{old('debut',$event->start->format('H:i'))}}" class="form-control" id="debut_heure" name="debut_heure" placeholder="">
+            <input type="time" value="{{old('debut_heure',$event->start->format('H:i'))}}" class="form-control" id="debut_heure" name="debut_heure" placeholder="">
         </div>
         <div class="form-group">
             <label for="fin">Fin de l'évènement</label>
@@ -52,7 +52,7 @@
                 </button>
             </div>
             @enderror
-            <input type="date" value="{{old('debut',$event->end->format('Y-m-d'))}}" class="form-control" id="fin" name="fin" placeholder="">
+            <input type="date" value="{{old('fin',$event->end->format('Y-m-d'))}}" class="form-control" id="fin" name="fin" placeholder="">
         </div>
         <div class="form-group">
             <label for="fin_heure">Heure de fin de l'évènement</label>
@@ -64,12 +64,12 @@
                 </button>
             </div>
             @enderror
-            <input type="time" value="{{old('debut',$event->start->format('H:i'))}}" class="form-control" id="fin_heure" name="fin_heure" placeholder="">
+            <input type="time" value="{{old('fin_heure',$event->start->format('H:i'))}}" class="form-control" id="fin_heure" name="fin_heure" placeholder="">
         </div>
 
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary">Editer</button>
         </div>
     </form>
 </div>

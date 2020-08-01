@@ -24,7 +24,7 @@
                     <a href="{{route('event.edit',$event)}}" class="btn btn-warning">
                     <i class="fa fa-pen"></i> Editer
                     </a>
-                <form action="{{route('event.destroy',$event)}}" method="post">
+                <form action="{{route('event.destroyAdmin',$event)}}" method="post">
                 @csrf
                 @method("DELETE")
                 <button class="btn btn-danger mt-2"><i class="fa fa-trash"></i>Supprimer</button>
