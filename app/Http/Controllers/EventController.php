@@ -9,6 +9,10 @@ use Redirect, Response;
 
 class EventController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $events = Event::all();
