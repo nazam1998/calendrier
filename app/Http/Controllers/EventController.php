@@ -22,6 +22,12 @@ class EventController extends Controller
     {
         return view('admin/event/add');
     }
+    public function storeCalendar(Request $request)
+    {
+        $insertArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end, 'valide' => false];
+        $event = Event::insert($insertArr);
+        return \Response::json($event);
+    }
     public function store(Request $request)
     {
 
@@ -43,7 +49,7 @@ class EventController extends Controller
                 'title' => $request->titre,
                 'start' => $debut,
                 'end' => $fin,
-                'valide'=>false
+                'valide' => false
             ]
         );
         return redirect('/');
@@ -79,12 +85,12 @@ class EventController extends Controller
         $where = array('id' => $request->id);
         $updateArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end];
         $event  = Event::where($where)->update($updateArr);
-        return Response::json($event);
+        return \Response::json($event);
     }
     public function destroy(Request $request)
     {
         $event = Event::where('id', $request->id)->delete();
-        return Response::json($event);
+        return \Response::json($event);
     }
 
     public function valider(Event $event)

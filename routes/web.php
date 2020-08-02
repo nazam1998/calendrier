@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "WelcomeController@index");
 
 Auth::routes();
+Route::post('event/store','EventController@storeCalendar')->name('event.storeCalendar');
 Route::get('event/{event}/valider','EventController@valider')->name('event.valider');
 Route::get('event/{event}/invalider','EventController@invalider')->name('event.invalider');
 Route::post('event/{event}/update', 'EventController@updateAdmin')->name('event.updateAdmin');
