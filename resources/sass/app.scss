@@ -43,3 +43,13 @@
         vertical-align: middle;
     }
 }
+.fc-event-container a{
+    cursor: pointer;
+}
+
+.fc-today{
+    background-color: $info !important;
+    span{
+        color: white;
+    }
+}

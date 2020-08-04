@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sondage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SondageController extends Controller
 {
@@ -14,7 +15,8 @@ class SondageController extends Controller
      */
     public function index()
     {
-        //
+        $sondages = Sondage::all();
+        return view('admin.sondage.index',compact('sondages'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SondageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.sondage.add');
     }
 
     /**
@@ -35,7 +37,15 @@ class SondageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'event.*'=>'required|integer',
+        ]);
+
+        $sondage = new Sondage();
+        $sondage->user_id = Auth::id();
+        $sondage->save();
+
+        $sondage->
     }
 
     /**

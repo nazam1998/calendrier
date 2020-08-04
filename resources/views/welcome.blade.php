@@ -70,10 +70,7 @@
                 });
             },
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to see the event ?");
-                if (deleteMsg) {
-                    window.location.href=SITEURL+'/event/'+event.id
-                }
+                window.location.href = SITEURL + '/event/' + event.id
             }
         });
     });
