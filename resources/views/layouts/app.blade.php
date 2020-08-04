@@ -62,6 +62,9 @@
                         <li class="nav-item">
                             <a href="{{route('event.create')}}" class="nav-link">Suggérer un évènement</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('sondage.index')}}" class="nav-link">Sondages</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

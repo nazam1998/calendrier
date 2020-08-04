@@ -15,9 +15,10 @@ class CreateSondagesTable extends Migration
     {
         Schema::create('sondages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_valide');
-            $table->foreign('user_valide')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('event_valide');
+            $table->string('title');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('event_valide')->nullable();
             $table->foreign('event_valide')->on('events')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

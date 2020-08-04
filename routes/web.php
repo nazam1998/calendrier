@@ -16,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "WelcomeController@index");
 
 Auth::routes();
-Route::post('event/store','EventController@storeCalendar')->name('event.storeCalendar');
-Route::get('event/{event}/valider','EventController@valider')->name('event.valider');
-Route::get('event/{event}/invalider','EventController@invalider')->name('event.invalider');
+Route::get('sondage/{sondage}/addEvent', 'SondageController@createEvent')->name('sondage.createEvent');
+Route::post('sondage/{sondage}/storeEvent', 'SondageController@storeEvent')->name('sondage.storeEvent');
+Route::resource('sondage', 'SondageController');
+
+//Event
+
+Route::post('event/store', 'EventController@storeCalendar')->name('event.storeCalendar');
+Route::get('event/{event}/valider', 'EventController@valider')->name('event.valider');
+Route::get('event/{event}/invalider', 'EventController@invalider')->name('event.invalider');
 Route::post('event/{event}/update', 'EventController@updateAdmin')->name('event.updateAdmin');
 Route::delete('event/{event}/delete', 'EventController@destroyAdmin')->name('event.destroyAdmin');
+
 Route::resource('event', 'EventController');
+
 Route::get('/home', 'HomeController@index')->name('home');
