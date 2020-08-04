@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Redirect, Response;
 
 class EventController extends Controller
@@ -28,6 +29,10 @@ class EventController extends Controller
         $event = Event::insert($insertArr);
         return \Response::json($event);
     }
+    public function show(Event $event){
+
+        return view('admin.event.show',compact('event'));
+    }
     public function store(Request $request)
     {
 
@@ -49,7 +54,8 @@ class EventController extends Controller
                 'title' => $request->titre,
                 'start' => $debut,
                 'end' => $fin,
-                'valide' => false
+                'valide' => false,
+                'user_id' => Auth::id(),
             ]
         );
         return redirect('/');
@@ -76,6 +82,7 @@ class EventController extends Controller
                 'title' => $request->titre,
                 'start' => $debut,
                 'end' => $fin,
+                'valide' => false,
             ]
         );
         return redirect()->route('event.index');
@@ -83,7 +90,7 @@ class EventController extends Controller
     public function update(Request $request)
     {
         $where = array('id' => $request->id);
-        $updateArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end];
+        $updateArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end, 'valide'];
         $event  = Event::where($where)->update($updateArr);
         return \Response::json($event);
     }

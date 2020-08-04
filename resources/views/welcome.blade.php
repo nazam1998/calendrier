@@ -20,10 +20,10 @@
             }
         });
         var calendar = $('#calendar').fullCalendar({
-            editable: true,
+            editable: false,
             events: SITEURL + "/",
             displayEventTime: true,
-            editable: true,
+            editable: false,
             timeFormat: 'H(:mm)',
             eventRender: function (event, element, view) {
                 if (event.allDay === 'true') {
@@ -32,8 +32,8 @@
                     event.allDay = false;
                 }
             },
-            selectable: true,
-            selectHelper: true,
+            selectable: false,
+            selectHelper: false,
             select: function (start, end, allDay) {
                 var title = prompt('Event Title:');
                 if (title) {
@@ -70,20 +70,9 @@
                 });
             },
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to delete?");
+                var deleteMsg = confirm("Do you really want to see the event ?");
                 if (deleteMsg) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: SITEURL + '/event/' + event.id,
-                        data: "&id=" + event.id,
-                        success: function (response) {
-                            if (parseInt(response) > 0) {
-                                $('#calendar').fullCalendar('removeEvents', event
-                                    .id);
-                                displayMessage("Deleted Successfully");
-                            }
-                        }
-                    });
+                    window.location.href=SITEURL+'/event/'+event.id
                 }
             }
         });

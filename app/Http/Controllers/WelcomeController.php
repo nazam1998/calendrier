@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Illuminate\Http\Request;
-use LaravelFullCalendar\Facades\Calendar;
-use Response, Redirect;
+
 
 class WelcomeController extends Controller
 {
@@ -14,7 +12,7 @@ class WelcomeController extends Controller
         if (request()->ajax()) {
             $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
             $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
-            $data = Event::where('valide', true)->whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end', 'valide']);
+            $data = Event::where('valide', true)->whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end', 'valide','user_id']);
             return \Response::json($data);
         }
         return view('welcome');

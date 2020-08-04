@@ -14,10 +14,11 @@ class EventSeeder extends Seeder
     {
         DB::table('events')->insert([
             [
-                'start'=>Carbon::now(),
-                'end'=>Carbon::now(),
-                'title'=>'Hello World',
-                'valide'=>true,
+                'start' => Carbon::now(),
+                'end' => Carbon::now(),
+                'title' => 'Hello World',
+                'valide' => true,
+                'user_id' => App\User::inRandomOrder()->first()->id,
             ],
         ]);
     }
