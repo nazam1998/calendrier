@@ -83,6 +83,15 @@ class SondageController extends Controller
     {
         return view('admin.sondage.show', compact('sondage'));
     }
+    public function voter(Sondage $sondage, Event $event){
+        $sondage->users()->attach(Auth::id(),['event_id'=>$event->id]);
+        return redirect()->back();
+    }
+    public function valider(Sondage $sondage, Event $event){
+        
+        dd('fonction à ajouter');
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *
