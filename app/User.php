@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role', 'role_id');
     }
+
+    public function eventsVote()
+    {
+        return $this->belongsToMany('App\Event', 'user_sondage', 'user_id', 'event_id');
+    }
 }

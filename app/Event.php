@@ -11,4 +11,8 @@ class Event extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function usersVote()
+    {
+        return $this->belongsToMany('App\Event', 'user_sondage', 'event_id', 'user_id');
+    }
 }

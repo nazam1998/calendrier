@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class SondageController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -83,12 +87,14 @@ class SondageController extends Controller
     {
         return view('admin.sondage.show', compact('sondage'));
     }
-    public function voter(Sondage $sondage, Event $event){
-        $sondage->users()->attach(Auth::id(),['event_id'=>$event->id]);
+    public function voter(Sondage $sondage, Event $event)
+    {
+        $sondage->users()->attach(Auth::id(), ['event_id' => $event->id]);
         return redirect()->back();
     }
-    public function valider(Sondage $sondage, Event $event){
-        
+    public function valider(Sondage $sondage, Event $event)
+    {
+
         dd('fonction à ajouter');
         return redirect()->back();
     }

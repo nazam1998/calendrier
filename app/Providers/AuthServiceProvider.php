@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('sondage_owner', function ($user, $sondage) {
+            return $sondage->user_id == $user->id;
+        });
     }
 }

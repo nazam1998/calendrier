@@ -11,7 +11,7 @@
                 <th>Titre</th>
                 <th>Début</th>
                 <th>Fin</th>
-                <th>Valide</th>
+                <th>%</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -22,15 +22,15 @@
                 <td>{{$event->title}}</td>
                 <td>{{$event->start->format('d/m/Y H:i:s')}}</td>
                 <td>{{$event->end->format('d/m/Y H:i:s')}}</td>
-                <td><i class="fa {{$event->valide?'fa-check text-success':'fa-times text-danger'}} fa-2x"></i></td>
+            <td>{{count($sondage->events->pluck('usersVote'))}}</td>
                 <td>
-                    @if ($event->valide)
-
-                    <a href="{{route('event.invalider',$event)}}" class="btn btn-danger">Invalider
+                    @if (!$sondage->users->contains(Auth::id()))
+                    <a href="{{route('sondage.voter',[$sondage,$event])}}" class="btn btn-success">Voter
                     </a>
+                    @elseif(Auth::user()->eventsVote->contains($event->id))
+                    <i class="fa fa-check text-success mx-2 fa-2x"></i>
                     @else
-                    <a href="{{route('event.valider',$event)}}" class="btn btn-success">Valider
-                    </a>
+                    <i class="fa fa-times text-danger mx-2 fa-2x"></i>
                     @endif
                     <a href="{{route('event.edit',$event)}}" class="btn btn-warning">
                         <i class="fa fa-pen"></i> Editer
@@ -38,7 +38,7 @@
                     <form action="{{route('event.destroyAdmin',$event)}}" method="post">
                         @csrf
                         @method("DELETE")
-                        <button class="btn btn-danger mt-2"><i class="fa fa-trash"></i>Supprimer</button>
+                        <button class="btn btn-danger mt-2" type="submit"><i class="fa fa-trash"></i> Supprimer</button>
                     </form>
                 </td>
             </tr>

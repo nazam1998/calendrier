@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', "WelcomeController@index");
 
 Auth::routes();
+
 Route::get('sondage/{sondage}/{event}/voter', 'SondageController@voter')->name('sondage.voter');
 Route::get('sondage/{sondage}/valider', 'SondageController@valider')->name('sondage.valider');
 Route::get('sondage/{sondage}/addEvent', 'SondageController@createEvent')->name('sondage.createEvent');
