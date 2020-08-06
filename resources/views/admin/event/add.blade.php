@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="titre">Titre</label>
             @error('titre')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -21,7 +21,7 @@
         <div class="form-group">
             <label for="debut">Début de l'évènement</label>
             @error('debut')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="debut_heure">Heure de début de l'évènement</label>
             @error('debut_heure')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -45,7 +45,7 @@
         <div class="form-group">
             <label for="fin">Fin de l'évènement</label>
             @error('fin')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -57,7 +57,7 @@
         <div class="form-group">
             <label for="fin_heure">Heure de fin de l'évènement</label>
             @error('fin_heure')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

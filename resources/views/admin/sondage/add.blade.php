@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="titre">Titre</label>
             @error('titre')
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{$message}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -17,7 +17,19 @@
             @enderror
         <input type="text" value="{{old('titre')}}" class="form-control" id="titre" name="titre" placeholder="Titre du sondage">
         </div>
-
+        <label for="">Etat du sondage</label>
+            @error('etat')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{$message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @enderror
+        <select id="etat" name="etat" class="custom-select">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+          </select>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </div>

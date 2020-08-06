@@ -44,12 +44,15 @@ class SondageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'title' => 'required|string',
             'event.*' => 'required|integer',
+            'etat' => 'required|integer|min:1|max:2',
         ]);
 
         $sondage = new Sondage();
         $sondage->title = $request->titre;
         $sondage->user_id = Auth::id();
+        $sondage->etat_id = $request->etat;
         $sondage->save();
         return redirect()->route('sondage.index');
     }
