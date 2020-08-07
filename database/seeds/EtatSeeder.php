@@ -11,6 +11,7 @@ class EtatSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('etats')->truncate();
         DB::table('etats')->insert([
             [
                 'etat' => 'Futur',
