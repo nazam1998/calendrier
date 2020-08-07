@@ -15,7 +15,7 @@
                 </button>
             </div>
             @enderror
-            <input type="text" value="{{old('titre')}}" class="form-control" id="titre" name="titre"
+            <input type="text" value="{{old('titre',$sondage->titre)}}" class="form-control" id="titre" name="titre"
                 placeholder="Titre du sondage">
         </div>
         <label for="">Etat du sondage</label>
@@ -27,10 +27,10 @@
             </button>
         </div>
         @enderror
-        <select id="etat" name="etat" class="custom-select mb-3">
+        <select id="etat" name="etat" class="custom-select  mb-3">
             @foreach ($etats as $etat)
 
-            @if (old('etat')==$etat->id)
+            @if (old('etat',$sondage->etat_id)==$etat->id)
 
             <option selected id="{{$etat->id}}">{{$etat->etat}}</option>
 

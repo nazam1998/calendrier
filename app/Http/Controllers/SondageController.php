@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Etat;
 use App\Event;
 use App\Sondage;
 use Carbon\Carbon;
@@ -32,7 +33,8 @@ class SondageController extends Controller
      */
     public function create()
     {
-        return view('admin.sondage.add');
+        $etats = Etat::all();
+        return view('admin.sondage.add', compact('etats'));
     }
 
     /**
@@ -89,6 +91,11 @@ class SondageController extends Controller
     public function show(Sondage $sondage)
     {
         return view('admin.sondage.show', compact('sondage'));
+    }
+    public function edit(Sondage $sondage)
+    {
+        $etats = Etat::all();
+        return view('admin.sondage.edit', compact('sondage', 'etats'));
     }
     public function voter(Sondage $sondage, Event $event)
     {
