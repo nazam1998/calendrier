@@ -46,11 +46,9 @@ class SondageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string',
-            'event.*' => 'required|integer',
+            'titre' => 'required|string',
             'etat' => 'required|integer|min:1|max:2',
         ]);
-
         $sondage = new Sondage();
         $sondage->title = $request->titre;
         $sondage->user_id = Auth::id();
@@ -97,17 +95,25 @@ class SondageController extends Controller
         $etats = Etat::all();
         return view('admin.sondage.edit', compact('sondage', 'etats'));
     }
+    public function update(Request $request, Sondage $sondage){
+        $request->validate([
+            'titre' => 'required|string',
+            'etat' => 'required|integer|min:1|max:2',
+        ]);
+
+        $sondage = new Sondage();
+        $sondage->title = $request->titre;
+        $sondage->user_id = Auth::id();
+        $sondage->etat_id = $request->etat;
+        $sondage->save();
+        return redirect()->route('sondage.index');
+    }
     public function voter(Sondage $sondage, Event $event)
     {
         $sondage->users()->attach(Auth::id(), ['event_id' => $event->id]);
         return redirect()->back();
     }
-    public function valider(Sondage $sondage, Event $event)
-    {
 
-        dd('fonction à ajouter');
-        return redirect()->back();
-    }
     /**
      * Remove the specified resource from storage.
      *

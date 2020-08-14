@@ -32,11 +32,11 @@
 
             @if (old('etat')==$etat->id)
 
-            <option selected id="{{$etat->id}}">{{$etat->etat}}</option>
+            <option selected value="{{$etat->id}}">{{$etat->etat}}</option>
 
             @else
 
-            <option id="{{$etat->id}}">{{$etat->etat}}</option>
+            <option value="{{$etat->id}}">{{$etat->etat}}</option>
 
             @endif
             @endforeach
