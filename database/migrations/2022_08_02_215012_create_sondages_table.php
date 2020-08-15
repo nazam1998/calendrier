@@ -16,12 +16,13 @@ class CreateSondagesTable extends Migration
         Schema::create('sondages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->dateTime('end');
             $table->unsignedBigInteger('etat_id');
             $table->foreign('etat_id')->on('etats')->references('id')->onDelete('cascade')->onUpdate('cascade');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
-            
+
             $table->unsignedBigInteger('event_valide')->nullable();
             $table->foreign('event_valide')->on('events')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
