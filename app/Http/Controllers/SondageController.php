@@ -13,7 +13,7 @@ class SondageController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
