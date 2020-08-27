@@ -21,6 +21,7 @@ class EventController extends Controller
     }
     public function create()
     {
+        
         return view('admin/event/add');
     }
     public function storeCalendar(Request $request)
